@@ -14,12 +14,19 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Logging Middleware
+app.use((req, res, next) => {
+    console.log(`[Request] ${req.method} ${req.url}`);
+    next();
+});
+
 // Middleware
 app.use(express.json());
 
 // Serve static files from 'dist'
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
+    console.log(`Serving static files from: ${distPath}`);
     app.use(express.static(distPath));
 } else {
     console.warn('WARNING: dist directory not found. Run "npm run build" first.');
@@ -32,6 +39,7 @@ const fromEmail = process.env.FROM_EMAIL;
 
 // API Route for Sending Emails
 app.post('/api/send', async (req, res) => {
+    console.log('Processing email request...');
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
@@ -64,6 +72,7 @@ app.post('/api/send', async (req, res) => {
             return res.status(500).json({ message: 'Error sending email', error });
         }
 
+        console.log('Email sent successfully');
         return res.status(200).json({ message: 'Email sent successfully!', data });
     } catch (exception) {
         console.error({ exception });
@@ -71,10 +80,11 @@ app.post('/api/send', async (req, res) => {
     }
 });
 
-// Catch-all route to serve React app (using app.use to avoid path matching issues)
+// Catch-all route to serve React app
 app.use((req, res, next) => {
     if (req.method !== 'GET') return next();
 
+    console.log('Serving index.html for unknown route');
     const indexPath = path.join(__dirname, 'dist', 'index.html');
     if (fs.existsSync(indexPath)) {
         res.sendFile(indexPath);
@@ -83,6 +93,7 @@ app.use((req, res, next) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+// Listen on 0.0.0.0 to fix Bad Gateway
+app.listen(Number(port), '0.0.0.0', () => {
+    console.log(`Server running on port ${port} (0.0.0.0)`);
 });
