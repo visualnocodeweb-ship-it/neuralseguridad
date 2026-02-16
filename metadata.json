@@ -1,0 +1,9 @@
+
+{
+  "name": "NEURAL-SEC GLOBAL",
+  "description": "Plataforma global de ciberseguridad Web3. Hacking ético y protección de datos corporativos de vanguardia. De Argentina para el mundo.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
