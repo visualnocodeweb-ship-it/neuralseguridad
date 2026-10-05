@@ -118,6 +118,15 @@ const LinkedInIcon = () => (
   </svg>
 );
 
+const WhatsAppIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+    <path
+      fill="#25D366"
+      d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.74.46 3.44 1.34 4.94L2 22l5.39-1.41a10 10 0 0 0 4.65 1.18h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2zm5.76 13.9c-.24.68-1.4 1.25-1.93 1.33-.49.07-1.1.1-1.78-.11-.41-.13-.94-.3-1.62-.59-2.85-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.24-.26.64-.38 1.02-.38.12 0 .23 0 .33.01.3.01.45.03.65.5.24.58.82 2 .89 2.15.07.14.12.32.02.51-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.13-.28.28-.12.54.16.26.71 1.17 1.52 1.89 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.54.73 1.8.86.27.13.44.19.51.3.06.11.06.64-.18 1.32z"
+    />
+  </svg>
+);
+
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" strokeWidth="1.8" aria-hidden="true">
     <defs>
@@ -408,6 +417,8 @@ const HudCorners = ({ tone = 'border-sky-500' }: { tone?: string }) => (
 const EMAIL = 'emanueltula89@gmail.com';
 const INSTAGRAM = 'https://www.instagram.com/ematula.ok';
 const LINKEDIN = 'https://www.linkedin.com/in/emanuel-tula';
+const PHONE = '02944249272';
+const WHATSAPP = 'https://wa.me/5492944249272';
 
 const App: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -473,6 +484,21 @@ const App: React.FC = () => {
               </button>
               <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 -translate-x-1/2 rounded-md bg-neutral-800 px-2 py-1 text-[11px] font-medium text-white opacity-0 transition group-hover:opacity-100">
                 {copied ? 'Copiado' : 'Copiar'}
+              </span>
+            </span>
+            <span className="group relative">
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noreferrer"
+                className={`${iconBtn} border-emerald-300 bg-emerald-50`}
+                aria-label={`WhatsApp ${PHONE}`}
+                title={PHONE}
+              >
+                <WhatsAppIcon />
+              </a>
+              <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-800 px-2 py-1 text-[11px] font-medium text-white opacity-0 transition group-hover:opacity-100">
+                {PHONE}
               </span>
             </span>
             <a
