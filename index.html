@@ -1,120 +1,96 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEURAL-SEC GLOBAL | World-Class Web3 Security</title>
+    <title>Inteligencia de datos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600&family=Outfit:wght@500;600&family=Sora:wght@500;600&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#ecfeff',
-                            100: '#cffafe',
-                            200: '#a5f3fc',
-                            300: '#67e8f9',
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                            600: '#0891b2',
-                            700: '#0e7490',
-                            800: '#155e75',
-                            900: '#164e63',
-                            950: '#083344',
-                        },
-                        dark: {
-                             900: '#020617', // Slate 950 base
-                             800: '#0f172a', // Slate 900
-                        }
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        syne: ['Syne', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                        fraunces: ['Fraunces', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sora: ['Sora', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
+        html, body, #root {
+            height: 100%;
+            overflow: hidden;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617;
-            color: #f8fafc;
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
+            margin: 0;
+            background-color: #f4f7fb;
+            color: #020617;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Outfit', sans-serif;
+        .jarvis-grid {
+            background-image:
+                linear-gradient(rgba(14, 165, 233, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse at center, black 45%, transparent 82%);
         }
-
-        .glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        @keyframes jarvis-scan {
+            0% { transform: translateY(-80px); opacity: 0; }
+            12% { opacity: 0.85; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .jarvis-scan {
+            height: 72px;
+            background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.14), transparent);
+            animation: jarvis-scan 9s linear infinite;
         }
-        
-        /* Efecto Grid Animado */
-        .grid-bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
+        @keyframes network-pulse {
+            0%, 100% { opacity: 0.35; }
+            50% { opacity: 0.9; }
         }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .network-pulse {
+            animation: network-pulse 2.4s ease-in-out infinite;
         }
-
-        .scanline {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, transparent, rgba(34, 211, 238, 0.5), transparent);
-            animation: scan 8s linear infinite;
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0.3;
+        @keyframes network-flow {
+            to { stroke-dashoffset: -180; }
         }
-        
-        @keyframes scan {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+        .network-flow {
+            stroke-dasharray: 5 9;
+            animation: network-flow 2.8s linear infinite;
+        }
+        @keyframes network-node {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+        @keyframes stack-drift {
+            0%, 100% { transform: translateY(0); opacity: 0.45; }
+            50% { transform: translateY(-8px); opacity: 0.85; }
+        }
+        .stack-word {
+            animation: stack-drift 8s ease-in-out infinite;
+        }
+        .graph-scroll {
+            scrollbar-width: none;
+        }
+        .graph-scroll::-webkit-scrollbar {
+            display: none;
         }
     </style>
 <script type="importmap">
 {
   "imports": {
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
     "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "lucide-react": "https://esm.sh/lucide-react@^0.564.0"
+    "react": "https://esm.sh/react@^19.2.4"
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="root"></div>
